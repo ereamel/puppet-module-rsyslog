@@ -9,7 +9,11 @@
 <% if @rsyslog_conf_version_real > 2 -%>
 #### MODULES ####
 
+<% if @kernel == 'Solaris' -%>
+$ModLoad imsolaris.so	# provides support for local system logging (e.g. via logger command)
+<% else -%>
 $ModLoad imuxsock.so	# provides support for local system logging (e.g. via logger command)
+<% end -%>
 $ModLoad imklog.so	# provides kernel logging support (previously done by rklogd)
 #$ModLoad immark.so	# provides --MARK-- message capability
 
